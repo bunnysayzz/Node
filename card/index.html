@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Validation</title>
+</head>
+<body>
+    <h2>Credit Card Validation</h2>
+    <form id="creditCardForm">
+        <label for="cardNumber">Enter Credit Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+        <button type="submit">Validate</button>
+    </form>
+    <p id="validationResult"></p>
+
+    <script>
+        document.getElementById('creditCardForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const cardNumber = document.getElementById('cardNumber').value;
+            const response = await fetch(`/validate?cardNumber=${cardNumber}`);
+            const data = await response.text();
+            document.getElementById('validationResult').innerText = data;
+        });
+    </script>
+</body>
+</html>
